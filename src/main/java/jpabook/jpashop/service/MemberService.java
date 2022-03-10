@@ -25,7 +25,7 @@ public class MemberService {
     public Long join(Member member){
         validateDuplicateMember(member); // 중복 회원 검증
         memberRepository.save(member);
-        return member.getId();
+        return member.getId(); // 얘가 어떻게 가능한 걸까...????
     }
 
     private void validateDuplicateMember(Member member){
