@@ -1,6 +1,8 @@
 package jpabook.jpashop.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -13,6 +15,7 @@ import static javax.persistence.FetchType.LAZY;
 @Entity
 @Table(name = "orders")
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // 이렇게 코드를 제약하는 것이 유지보수에 좋다
 public class Order {
 
     @Id @GeneratedValue
@@ -75,8 +78,9 @@ public class Order {
 
         this.setStatus(OrderStatus.CANCEL);
         for (OrderItem orderItem : orderItems) {
+            // 주문 상품에도 각각 cancel을 날려줌
             // orderItem에서의 cancel: 재고 수량을 복원해줌
-            orderItem.cancel(); // 주문 상품에도 각각 cancel을 날려줌
+            orderItem.cancel();
         }
     }
 
