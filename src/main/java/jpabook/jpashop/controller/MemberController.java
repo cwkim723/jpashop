@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -45,4 +46,15 @@ public class MemberController {
         return "redirect:/"; // 첫번째 페이지로 넘어감
     }
 
+    @GetMapping("/members")
+    public String list(Model model){
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
+    }
+
+    /*
+        API 만들 때는 이유 불문하고 Entity를 반환하면 안됨.(Entity를 API를 통해 외부로 호출하면 X)
+        => Entity에 컬럼을 추가하면 API 스펙이 바뀌게 됨 -> API가 불안정해짐
+     */
 }
