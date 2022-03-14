@@ -17,7 +17,7 @@ public class ItemUpdateTest {
     EntityManager em;
 
     @Test
-    public void updateTest() throws Exception{
+    public void updateTest() throws Exception {
         Book book = em.find(Book.class, 1L);
 
         // transaction
@@ -28,3 +28,4 @@ public class ItemUpdateTest {
         // TX commit
     }
 
+}
