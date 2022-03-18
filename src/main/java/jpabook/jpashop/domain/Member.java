@@ -14,6 +14,7 @@ public class Member {
     @Id @GeneratedValue
     @Column(name = "member_id")
     private Long id;
+    // @GeneratedValue: db에서 만든 값을 그대로 쓰겠다.
 
     private String name;
 
